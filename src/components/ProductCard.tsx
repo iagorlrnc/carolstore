@@ -27,26 +27,26 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
       </div>
       
-      <div className="p-6 flex flex-col flex-grow bg-white">
-        <h3 className="font-bold text-lg text-stone-800 line-clamp-1 mb-1" title={product.name}>
+      <div className="p-3 sm:p-4 md:p-6 flex flex-col flex-grow bg-white">
+        <h3 className="font-bold text-sm sm:text-base md:text-lg text-stone-800 line-clamp-1 mb-1" title={product.name}>
           {product.name}
         </h3>
         {product.description && (
-          <p className="text-base font-semibold text-black-500">{product.description}</p>
+          <p className="text-xs sm:text-sm md:text-base font-semibold text-stone-500 line-clamp-2">{product.description}</p>
         )}
         
         <div className="flex items-center justify-between mt-auto pt-2">
-          <span className="font-bold text-2xl bg-gradient-to-r from-red-500 to-[#fa8072] bg-clip-text text-transparent inline-block">
+          <span className="font-bold text-base sm:text-xl md:text-2xl bg-gradient-to-r from-red-500 to-[#fa8072] bg-clip-text text-transparent inline-block truncate pr-1 sm:pr-2">
             {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.price)}
           </span>
           <a
             href={product.buyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center bg-rose-50 hover:bg-gradient-to-r hover:from-rose-200 hover:via-pink-100 hover:to-orange-100 text-rose-400 hover:text-stone-700 p-3 rounded-xl transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5"
+            className="flex-shrink-0 flex items-center justify-center bg-rose-50 hover:bg-gradient-to-r hover:from-rose-200 hover:via-pink-100 hover:to-orange-100 text-rose-400 hover:text-stone-700 p-2 sm:p-3 rounded-lg sm:rounded-xl transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 ml-1"
             title="Adquirir"
           >
-            <ShoppingBag size={20} />
+            <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />
           </a>
         </div>
       </div>

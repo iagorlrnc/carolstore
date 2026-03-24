@@ -23,11 +23,11 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category }) => {
           className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 ease-out"
         />
         
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-900/80 via-stone-900/30 to-transparent z-20 flex flex-col justify-end p-6">
-          <h3 className="text-white font-bold text-xl sm:text-2xl mb-1 truncate drop-shadow-md">
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-900/80 via-stone-900/40 to-transparent z-20 flex flex-col justify-end p-3 sm:p-4 md:p-6">
+          <h3 className="text-white font-bold text-base sm:text-xl md:text-2xl mb-0.5 sm:mb-1 truncate drop-shadow-md">
             {category.name}
           </h3>
-          <p className="text-rose-100 text-sm font-medium opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 drop-shadow-md">
+          <p className="text-rose-100 text-xs sm:text-sm font-medium opacity-100 md:opacity-0 group-hover:opacity-100 transform md:translate-y-2 group-hover:translate-y-0 transition-all duration-300 drop-shadow-md">
             {category.productCount} {category.productCount === 1 ? 'Produto' : 'Produtos'} &rarr;
           </p>
         </div>
