@@ -3,7 +3,7 @@ import CategoryList from '../components/CategoryList';
 import ProductList from '../components/ProductList';
 import { categories, products } from '../data/mockData';
 import { useStore } from '../store/useStore';
-import { Heart } from 'lucide-react';
+import { Heart, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Home: React.FC = () => {
@@ -56,6 +56,27 @@ const Home: React.FC = () => {
             Encontre os melhores produtos das marcas que você ama com uma experiência de compra incrível.
           </p>
         </div>
+      </section>
+
+      {/* WhatsApp Exclusive Discounts Section */}
+      <section className="bg-gradient-to-r from-green-50 to-emerald-100 rounded-3xl p-6 sm:p-8 text-stone-800 shadow-md border border-green-200 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="flex-1">
+          <h2 className="text-2xl sm:text-3xl font-extrabold mb-2 text-green-900">
+            Descontos Exclusivos no WhatsApp!
+          </h2>
+          <p className="text-stone-600 font-medium">
+            Quer ofertas imperdíveis? Fale com a gente pelo WhatsApp e garanta preços especiais que você só encontra lá.
+          </p>
+        </div>
+        <a
+          href="https://wa.me/5511999999999?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+os+descontos+exclusivos+da+loja."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-shrink-0 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform hover:scale-105 flex items-center gap-2"
+        >
+          <MessageCircle size={24} />
+          <span>Chamar no WhatsApp</span>
+        </a>
       </section>
 
       {/* Trending Products */}
