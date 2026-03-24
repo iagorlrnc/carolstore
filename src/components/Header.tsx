@@ -21,7 +21,7 @@ const Header: React.FC = () => {
         <div className="flex justify-between items-center h-16 relative">
           {/* Logo */}
           <Link to="/" className={`flex items-center gap-2 group ${isSearchOpen ? 'max-[500px]:hidden' : ''}`}>
-            <div className="bg-gradient-to-br from-pink-400 via-[#f5deb3] to-[#fa8072] text-white p-2.5 rounded-2xl group-hover:shadow-lg group-hover:shadow-pink-200 transition-all">
+            <div className="bg-gradient-to-br from-rose-500 via-pink-600 to-rose-700 text-white p-2.5 rounded-2xl group-hover:shadow-lg group-hover:shadow-rose-400 transition-all">
               <Heart size={24} fill="white" />
             </div>
             <span className="text-2xl font-black tracking-tighter text-rose-500">
