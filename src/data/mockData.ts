@@ -286,7 +286,7 @@ export const products: Product[] = [
     rating: 4.8,
     buyUrl: "https://pay.hest.com.br/5e639048-5c4f-473d-9396-dc118ffe3a51",
     description: "1 mês",
-    featured: false,
+    featured: true,
   },
   {
     id: "p16",
@@ -319,7 +319,7 @@ export const products: Product[] = [
     rating: 4.8,
     buyUrl: "https://pay.hest.com.br/d017e45b-b9c7-4c9b-9db8-ef48a1c46ebd",
     description: "1 mês",
-    featured: true,
+    featured: false,
   },
   {
     id: "p19",
