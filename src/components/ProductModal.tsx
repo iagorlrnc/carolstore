@@ -14,11 +14,15 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      // Mover fix para mobile iOS
+      document.documentElement.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = 'unset';
     }
     return () => {
       document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = 'unset';
     };
   }, [isOpen]);
 
@@ -27,7 +31,10 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 pb-20 sm:pb-6">
+        <div 
+          className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-2 sm:p-4 md:p-6"
+          style={{ height: '100%', maxHeight: '100dvh' }}
+        >
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -36,35 +43,36 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
             className="absolute inset-0 bg-stone-900/60 backdrop-blur-sm"
           />
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: 100 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh]"
+            exit={{ opacity: 0, scale: 0.95, y: 100 }}
+            className="relative w-full max-w-3xl bg-white rounded-t-3xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row flex-1 sm:flex-initial"
+            style={{ maxHeight: 'calc(100dvh - 16px)', height: '100%' }}
           >
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center bg-white/80 backdrop-blur-md rounded-full text-stone-500 hover:text-stone-800 hover:bg-white transition-colors"
+              className="absolute top-3 right-3 md:top-4 md:right-4 z-10 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-white/80 backdrop-blur-md rounded-full text-stone-500 hover:text-stone-800 hover:bg-white transition-colors shadow-sm"
             >
-              <X className="w-5 h-5" />
+              <X className="w-5 h-5 md:w-6 md:h-6" />
             </button>
-            <div className="w-full md:w-1/2 min-h-[300px] md:min-h-0 bg-rose-50 relative flex-shrink-0">
+            <div className="w-full md:w-[45%] lg:w-1/2 h-[35vh] min-h-[200px] sm:min-h-[300px] md:h-auto md:min-h-0 bg-rose-50 relative flex-shrink-0">
               <img
                 src={product.imageUrl}
                 alt={product.name}
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
-            <div className="p-6 sm:p-8 flex flex-col w-full md:w-1/2 overflow-y-auto">
+            <div className="p-5 sm:p-6 md:p-8 flex flex-col w-full md:w-[55%] lg:w-1/2 overflow-y-auto flex-1 bg-white relative">
               <div className="mb-2">
-                <span className="text-xs font-bold text-rose-500 uppercase tracking-wider bg-rose-50 px-2 py-1 rounded-md">
+                <span className="text-[10px] md:text-xs font-bold text-rose-500 uppercase tracking-widest bg-rose-50 px-2.5 py-1 rounded-md">
                   {category?.name}
                 </span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-stone-800 mb-2">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-stone-800 mb-2 leading-tight">
                 {product.name}
               </h2>
               <div className="flex items-center gap-1 mb-4">
-                <span className="bg-rose-100 text-rose-600 px-2 py-0.5 rounded text-sm font-bold flex items-center gap-1">
+                <span className="bg-rose-100 text-rose-600 px-2 py-0.5 rounded textxs sm:text-sm font-bold flex items-center gap-1">
                   ♥ {product.rating || '4.5'}
                 </span>
               </div>
@@ -72,21 +80,27 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
               <div className="space-y-4 mb-6 flex-grow">
                 {product.description && (
                   <div>
-                    <h4 className="text-sm font-bold text-stone-800 mb-1">Sobre o Produto</h4>
-                    <p className="text-stone-600 text-sm leading-relaxed whitespace-pre-line">{product.description}</p>
+                    <h4 className="text-sm font-bold text-stone-900 mb-1.5 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
+                      Sobre o Produto
+                    </h4>
+                    <p className="text-stone-500 text-sm leading-relaxed whitespace-pre-line">{product.description}</p>
                   </div>
                 )}
                 {category?.description && (
                   <div>
-                    <h4 className="text-sm font-bold text-stone-800 mb-1">Sobre a Linha {category.name}</h4>
-                    <p className="text-stone-600 text-sm leading-relaxed whitespace-pre-line">{category.description}</p>
+                    <h4 className="text-sm font-bold text-stone-900 mb-1.5 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-pink-400"></span>
+                      Linha {category.name}
+                    </h4>
+                    <p className="text-stone-500 text-sm leading-relaxed whitespace-pre-line">{category.description}</p>
                   </div>
                 )}
               </div>
 
-              <div className="mt-auto pt-4 border-t border-stone-100">
-                <div className="mb-4">
-                  <span className="text-3xl font-extrabold bg-gradient-to-r from-red-500 to-[#fa8072] bg-clip-text text-transparent">
+              <div className="mt-auto pt-4 border-t border-stone-100 pb-safe sm:pb-0">
+                <div className="mb-3">
+                  <span className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-red-500 to-[#fa8072] bg-clip-text text-transparent">
                     {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.price)}
                   </span>
                 </div>
@@ -94,7 +108,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
                   href={product.buyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-rose-400 to-[#fa8072] hover:from-rose-500 hover:to-red-500 text-white py-4 px-6 rounded-2xl font-bold text-lg transition-transform hover:scale-105 shadow-lg shadow-rose-200"
+                  className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-rose-400 to-[#fa8072] hover:from-rose-500 hover:to-red-500 text-white py-3.5 sm:py-4 px-6 rounded-2xl font-bold text-base sm:text-lg transition-transform hover:scale-105 shadow-xl shadow-rose-200/50"
                 >
                   <ShoppingBag className="w-5 h-5" />
                   <span>Comprar agora</span>
