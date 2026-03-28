@@ -1,22 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ShoppingBag } from 'lucide-react';
 import type { Product } from '../types';
+import ProductModal from './ProductModal';
 
 interface ProductCardProps {
   product: Product;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.3 }}
-      className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-rose-100 border border-rose-50 flex flex-col group transition-all"
-    >
-      <div className="relative aspect-square overflow-hidden bg-rose-50">
+    <>
+      <motion.div 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        whileHover={{ y: -5 }}
+        transition={{ duration: 0.3 }}
+        onClick={() => setIsModalOpen(true)}
+        className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-rose-100 border border-rose-50 flex flex-col group transition-all cursor-pointer h-full"
+      >
+        <div className="relative aspect-square overflow-hidden bg-rose-50">
         <img 
           src={product.imageUrl} 
           alt={product.name}
@@ -43,6 +48,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             href={product.buyUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
             className="flex-shrink-0 flex items-center justify-center bg-rose-50 hover:bg-gradient-to-r hover:from-rose-200 hover:via-pink-100 hover:to-orange-100 text-rose-400 hover:text-stone-700 p-2 sm:p-3 rounded-lg sm:rounded-xl transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 ml-1"
             title="Adquirir"
           >
@@ -50,7 +56,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </a>
         </div>
       </div>
-    </motion.div>
+      </motion.div>
+      <ProductModal 
+        product={product} 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
+    </>
   );
 };
 
