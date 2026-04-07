@@ -79,7 +79,6 @@ const Home: React.FC = () => {
         </a>
       </section>
 
-      {/* Trending Products */}
       <section>
         <div className="flex items-end justify-between mb-8">
           <div>
@@ -90,7 +89,6 @@ const Home: React.FC = () => {
         <ProductList products={products.filter(p => p.featured)} />
       </section>
 
-      {/* Categories Section */}
       <section>
         <div className="flex items-end justify-between mb-8 mt-16">
           <div>

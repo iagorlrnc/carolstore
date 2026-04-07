@@ -47,7 +47,7 @@ const Layout: React.FC = () => {
               <div>
                 <h3 className="font-bold text-stone-800 mb-5">Redes Sociais</h3>
                 <div className="flex gap-4">
-                  <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" className="bg-rose-50 p-2.5 rounded-full text-rose-500 hover:bg-rose-500 hover:text-white transition-all transform hover:scale-110 shadow-sm">
+                  <a href="https://www.instagram.com/carolina_barboza063/" target="_blank" rel="noopener noreferrer" className="bg-rose-50 p-2.5 rounded-full text-rose-500 hover:bg-rose-500 hover:text-white transition-all transform hover:scale-110 shadow-sm">
                     <Instagram size={20} />
                   </a>
                   <a href="https://wa.me/5563992647445" target="_blank" rel="noopener noreferrer" className="bg-green-50 p-2.5 rounded-full text-green-500 hover:bg-green-500 hover:text-white transition-all transform hover:scale-110 shadow-sm">
