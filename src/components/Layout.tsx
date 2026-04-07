@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import Header from './Header';
-import { Instagram, MessageCircle, Mail, Phone } from 'lucide-react';
+import { Instagram, MessageCircle, Phone } from 'lucide-react';
 
 const Layout: React.FC = () => {
   return (
