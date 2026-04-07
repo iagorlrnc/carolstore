@@ -31,12 +31,13 @@ const Layout: React.FC = () => {
                 <ul className="space-y-4 text-sm text-stone-500">
                   <li className="flex items-center gap-3 hover:text-rose-500 transition-colors">
                     <Phone size={18} className="text-rose-400 shrink-0" />
-                    <span>(63) 99999-9999</span>
+                    <span>(63) 99264-7445</span>
                   </li>
-                  <li className="flex items-center gap-3 hover:text-rose-500 transition-colors">
+                  {/*email */}
+                  {/* <li className="flex items-center gap-3 hover:text-rose-500 transition-colors">
                     <Mail size={18} className="text-rose-400 shrink-0" />
-                    <span>contato@carolstore.com.br</span>
-                  </li>
+                    <span></span>
+                  </li> */}
                 </ul>
               </div>
             </div>
@@ -49,7 +50,7 @@ const Layout: React.FC = () => {
                   <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" className="bg-rose-50 p-2.5 rounded-full text-rose-500 hover:bg-rose-500 hover:text-white transition-all transform hover:scale-110 shadow-sm">
                     <Instagram size={20} />
                   </a>
-                  <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" className="bg-green-50 p-2.5 rounded-full text-green-500 hover:bg-green-500 hover:text-white transition-all transform hover:scale-110 shadow-sm">
+                  <a href="https://wa.me/5563992647445" target="_blank" rel="noopener noreferrer" className="bg-green-50 p-2.5 rounded-full text-green-500 hover:bg-green-500 hover:text-white transition-all transform hover:scale-110 shadow-sm">
                     <MessageCircle size={20} />
                   </a>
                 </div>
@@ -66,7 +67,7 @@ const Layout: React.FC = () => {
 
       {/* Botão flutuante do WhatsApp */}
       <a
-        href="https://wa.me/5511999999999?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+os+descontos+exclusivos+da+loja."
+        href="https://wa.me/5563992647445?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+os+produtos+disponiveis+na+loja."
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 hover:shadow-xl transition-all transform hover:scale-110 flex items-center justify-center cursor-pointer"

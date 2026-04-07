@@ -69,7 +69,7 @@ const Home: React.FC = () => {
           </p>
         </div>
         <a
-          href="https://wa.me/5511999999999?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+os+descontos+exclusivos+da+loja."
+          href="https://wa.me/5563992647445?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+os+produtos+disponiveis+na+loja."
           target="_blank"
           rel="noopener noreferrer"
           className="flex-shrink-0 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform hover:scale-105 flex items-center gap-2"
