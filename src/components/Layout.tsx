@@ -1,7 +1,7 @@
-import React from 'react';
-import { Outlet, Link } from 'react-router-dom';
-import Header from './Header';
-import { Instagram, MessageCircle, Phone } from 'lucide-react';
+import React from "react"
+import { Outlet, Link } from "react-router-dom"
+import Header from "./Header"
+import { Instagram, MessageCircle, Phone } from "lucide-react"
 
 const Layout: React.FC = () => {
   return (
@@ -13,14 +13,24 @@ const Layout: React.FC = () => {
       <footer className="bg-white border-t border-rose-100 pt-16 pb-8 mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-
             {/* Brand Info */}
             <div className="max-w-sm">
-              <Link to="/" className="text-2xl font-black tracking-tighter text-rose-500 mb-4 block">
-                CAROL<span className="text-stone-800">STORE</span>
+              <Link
+                to="/"
+                className="mb-4 inline-flex items-center gap-2 group"
+              >
+                <img
+                  src="/assets/iconcarolstore.png"
+                  alt="Carol Store Logo"
+                  className="w-10 h-10 rounded-full object-cover group-hover:shadow-lg group-hover:shadow-rose-400 transition-all shadow-sm"
+                />
+                <span className="text-2xl font-black tracking-tighter text-rose-500">
+                  CAROL<span className="text-stone-800">STORE</span>
+                </span>
               </Link>
               <p className="text-stone-500 text-sm leading-relaxed mb-6">
-                Descubra o extraordinário em cada detalhe. Produtos selecionados com amor para você viver a melhor experiência de compra.
+                Descubra o extraordinário em cada detalhe. Produtos selecionados
+                com amor para você viver a melhor experiência de compra.
               </p>
             </div>
 
@@ -47,20 +57,32 @@ const Layout: React.FC = () => {
               <div>
                 <h3 className="font-bold text-stone-800 mb-5">Redes Sociais</h3>
                 <div className="flex gap-4">
-                  <a href="https://www.instagram.com/carolina_barboza063/" target="_blank" rel="noopener noreferrer" className="bg-rose-50 p-2.5 rounded-full text-rose-500 hover:bg-rose-500 hover:text-white transition-all transform hover:scale-110 shadow-sm">
+                  <a
+                    href="https://www.instagram.com/carolina_barboza063/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-rose-50 p-2.5 rounded-full text-rose-500 hover:bg-rose-500 hover:text-white transition-all transform hover:scale-110 shadow-sm"
+                  >
                     <Instagram size={20} />
                   </a>
-                  <a href="https://wa.me/5563992647445" target="_blank" rel="noopener noreferrer" className="bg-green-50 p-2.5 rounded-full text-green-500 hover:bg-green-500 hover:text-white transition-all transform hover:scale-110 shadow-sm">
+                  <a
+                    href="https://wa.me/5563992647445"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-green-50 p-2.5 rounded-full text-green-500 hover:bg-green-500 hover:text-white transition-all transform hover:scale-110 shadow-sm"
+                  >
                     <MessageCircle size={20} />
                   </a>
                 </div>
               </div>
             </div>
-
           </div>
 
           <div className="border-t border-rose-100 pt-8 flex justify-center items-center gap-4 text-sm text-stone-400 text-center">
-            <p>&copy; {new Date().getFullYear()} CarolStore. Todos os direitos reservados.</p>
+            <p>
+              &copy; {new Date().getFullYear()} CarolStore. Todos os direitos
+              reservados.
+            </p>
           </div>
         </div>
       </footer>
@@ -76,7 +98,7 @@ const Layout: React.FC = () => {
         <MessageCircle size={30} />
       </a>
     </div>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout
