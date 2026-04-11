@@ -9,6 +9,17 @@ const ScrollToTop = () => {
   const location = useLocation()
 
   useEffect(() => {
+    const currentPath = `${location.pathname}${location.search}${location.hash}`
+    const savedExternalPath = sessionStorage.getItem("externalReturnPath")
+    const savedExternalScrollY = sessionStorage.getItem("externalReturnScrollY")
+
+    if (savedExternalPath === currentPath && savedExternalScrollY) {
+      window.scrollTo(0, Number(savedExternalScrollY))
+      sessionStorage.removeItem("externalReturnPath")
+      sessionStorage.removeItem("externalReturnScrollY")
+      return
+    }
+
     const navigationState = location.state as {
       restoreHomeScroll?: boolean
     } | null
@@ -24,7 +35,7 @@ const ScrollToTop = () => {
     }
 
     window.scrollTo(0, 0)
-  }, [location.pathname, location.state])
+  }, [location.pathname, location.search, location.hash, location.state])
 
   return null
 }

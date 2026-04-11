@@ -52,6 +52,16 @@ const ProductModal: React.FC<ProductModalProps> = ({
 
   const category = categories.find((c) => c.id === product.categoryId)
 
+  const handleBuyClick = () => {
+    const lockedScrollY = document.body.dataset.scrollY
+    const scrollY = lockedScrollY ? Number(lockedScrollY) : window.scrollY
+    sessionStorage.setItem("externalReturnScrollY", String(scrollY))
+    sessionStorage.setItem(
+      "externalReturnPath",
+      `${window.location.pathname}${window.location.search}${window.location.hash}`,
+    )
+  }
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -108,8 +118,9 @@ const ProductModal: React.FC<ProductModalProps> = ({
                 </div>
                 <a
                   href={product.buyUrl}
-                  target="_blank"
+                  // target="_blank"
                   rel="noopener noreferrer"
+                  onClick={handleBuyClick}
                   className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-rose-400 to-[#fa8072] hover:from-rose-500 hover:to-red-500 text-white py-3.5 sm:py-4 px-6 rounded-2xl font-bold text-base sm:text-lg transition-transform hover:scale-105 shadow-xl shadow-rose-200/50"
                 >
                   <ShoppingBag className="w-5 h-5" />

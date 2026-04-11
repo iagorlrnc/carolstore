@@ -1,19 +1,28 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ShoppingBag } from 'lucide-react';
-import type { Product } from '../types';
-import ProductModal from './ProductModal';
+import React, { useState } from "react"
+import { motion } from "framer-motion"
+import { ShoppingBag } from "lucide-react"
+import type { Product } from "../types"
+import ProductModal from "./ProductModal"
 
 interface ProductCardProps {
-  product: Product;
+  product: Product
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleBuyClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.stopPropagation()
+    sessionStorage.setItem("externalReturnScrollY", String(window.scrollY))
+    sessionStorage.setItem(
+      "externalReturnPath",
+      `${window.location.pathname}${window.location.search}${window.location.hash}`,
+    )
+  }
 
   return (
     <>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         whileHover={{ y: -5 }}
@@ -22,48 +31,56 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-rose-100 border border-rose-50 flex flex-col group transition-all cursor-pointer h-full"
       >
         <div className="relative aspect-square overflow-hidden bg-rose-50">
-        <img 
-          src={product.imageUrl} 
-          alt={product.name}
-          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 ease-out"
-        />
-        <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-stone-700 shadow-sm flex items-center gap-1">
-          <span className="text-rose-400">♥</span> {product.rating || '4.5'}
+          <img
+            src={product.imageUrl}
+            alt={product.name}
+            className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 ease-out"
+          />
+          <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-stone-700 shadow-sm flex items-center gap-1">
+            <span className="text-rose-400">♥</span> {product.rating || "4.5"}
+          </div>
         </div>
-      </div>
-      
-      <div className="p-3 sm:p-4 md:p-6 flex flex-col flex-grow bg-white">
-        <h3 className="font-bold text-sm sm:text-base md:text-lg text-stone-800 line-clamp-1 mb-1" title={product.name}>
-          {product.name}
-        </h3>
-        {product.description && (
-          <p className="text-xs sm:text-sm md:text-base font-semibold text-stone-500 line-clamp-2">{product.description}</p>
-        )}
-        
-        <div className="flex items-center justify-between mt-auto pt-2">
-          <span className="font-bold text-base sm:text-xl md:text-2xl bg-gradient-to-r from-red-500 to-[#fa8072] bg-clip-text text-transparent inline-block truncate pr-1 sm:pr-2">
-            {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.price)}
-          </span>
-          <a
-            href={product.buyUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="flex-shrink-0 flex items-center justify-center bg-rose-50 hover:bg-gradient-to-r hover:from-rose-200 hover:via-pink-100 hover:to-orange-100 text-rose-400 hover:text-stone-700 p-2 sm:p-3 rounded-lg sm:rounded-xl transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 ml-1"
-            title="Adquirir"
+
+        <div className="p-3 sm:p-4 md:p-6 flex flex-col flex-grow bg-white">
+          <h3
+            className="font-bold text-sm sm:text-base md:text-lg text-stone-800 line-clamp-1 mb-1"
+            title={product.name}
           >
-            <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />
-          </a>
+            {product.name}
+          </h3>
+          {product.description && (
+            <p className="text-xs sm:text-sm md:text-base font-semibold text-stone-500 line-clamp-2">
+              {product.description}
+            </p>
+          )}
+
+          <div className="flex items-center justify-between mt-auto pt-2">
+            <span className="font-bold text-base sm:text-xl md:text-2xl bg-gradient-to-r from-red-500 to-[#fa8072] bg-clip-text text-transparent inline-block truncate pr-1 sm:pr-2">
+              {new Intl.NumberFormat("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+              }).format(product.price)}
+            </span>
+            <a
+              href={product.buyUrl}
+              // target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleBuyClick}
+              className="flex-shrink-0 flex items-center justify-center bg-rose-50 hover:bg-gradient-to-r hover:from-rose-200 hover:via-pink-100 hover:to-orange-100 text-rose-400 hover:text-stone-700 p-2 sm:p-3 rounded-lg sm:rounded-xl transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 ml-1"
+              title="Adquirir"
+            >
+              <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5" />
+            </a>
+          </div>
         </div>
-      </div>
       </motion.div>
-      <ProductModal 
-        product={product} 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
+      <ProductModal
+        product={product}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
       />
     </>
-  );
-};
+  )
+}
 
-export default ProductCard;
+export default ProductCard
