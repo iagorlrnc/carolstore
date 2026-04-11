@@ -1,59 +1,61 @@
-import React, { useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, ShoppingBag } from 'lucide-react';
-import type { Product } from '../types';
-import { categories } from '../data/mockData';
+import React, { useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { X, ShoppingBag } from "lucide-react"
+import type { Product } from "../types"
+import { categories } from "../data/mockData"
 
 interface ProductModalProps {
-  product: Product;
-  isOpen: boolean;
-  onClose: () => void;
+  product: Product
+  isOpen: boolean
+  onClose: () => void
 }
 
-const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose }) => {
+const ProductModal: React.FC<ProductModalProps> = ({
+  product,
+  isOpen,
+  onClose,
+}) => {
   useEffect(() => {
     if (isOpen) {
-      const scrollY = window.scrollY;
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.left = '0';
-      document.body.style.right = '0';
-      document.body.style.width = '100%';
-      document.body.style.overflow = 'hidden';
-      document.body.dataset.scrollY = scrollY.toString();
+      const scrollY = window.scrollY
+      document.body.style.position = "fixed"
+      document.body.style.top = `-${scrollY}px`
+      document.body.style.left = "0"
+      document.body.style.right = "0"
+      document.body.style.width = "100%"
+      document.body.style.overflow = "hidden"
+      document.body.dataset.scrollY = scrollY.toString()
     } else {
-      const scrollY = document.body.dataset.scrollY;
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.left = '';
-      document.body.style.right = '';
-      document.body.style.width = '';
-      document.body.style.overflow = '';
-      
+      const scrollY = document.body.dataset.scrollY
+      document.body.style.position = ""
+      document.body.style.top = ""
+      document.body.style.left = ""
+      document.body.style.right = ""
+      document.body.style.width = ""
+      document.body.style.overflow = ""
+
       if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY));
-        delete document.body.dataset.scrollY;
+        window.scrollTo(0, parseInt(scrollY))
+        delete document.body.dataset.scrollY
       }
     }
-    
-    return () => {
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.left = '';
-      document.body.style.right = '';
-      document.body.style.width = '';
-      document.body.style.overflow = '';
-    };
-  }, [isOpen]);
 
-  const category = categories.find(c => c.id === product.categoryId);
+    return () => {
+      document.body.style.position = ""
+      document.body.style.top = ""
+      document.body.style.left = ""
+      document.body.style.right = ""
+      document.body.style.width = ""
+      document.body.style.overflow = ""
+    }
+  }, [isOpen])
+
+  const category = categories.find((c) => c.id === product.categoryId)
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div 
-          className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6"
-        >
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -91,35 +93,17 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
               </h2>
               <div className="flex items-center gap-1 mb-4">
                 <span className="bg-rose-100 text-rose-600 px-2 py-0.5 rounded textxs sm:text-sm font-bold flex items-center gap-1">
-                  ♥ {product.rating || '4.5'}
+                  ♥ {product.rating || "4.5"}
                 </span>
               </div>
-              
-              <div className="space-y-4 mb-6 flex-grow">
-                {product.description && (
-                  <div>
-                    <h4 className="text-sm font-bold text-stone-900 mb-1.5 flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
-                      Sobre o Produto
-                    </h4>
-                    <p className="text-stone-500 text-sm leading-relaxed whitespace-pre-line">{product.description}</p>
-                  </div>
-                )}
-                {category?.description && (
-                  <div>
-                    <h4 className="text-sm font-bold text-stone-900 mb-1.5 flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-pink-400"></span>
-                      Linha {category.name}
-                    </h4>
-                    <p className="text-stone-500 text-sm leading-relaxed whitespace-pre-line">{category.description}</p>
-                  </div>
-                )}
-              </div>
 
-              <div className="mt-auto pt-4 border-t border-stone-100 pb-safe sm:pb-0">
+              <div className="mb-6 pb-4 border-b border-stone-100">
                 <div className="mb-3">
                   <span className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-red-500 to-[#fa8072] bg-clip-text text-transparent">
-                    {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.price)}
+                    {new Intl.NumberFormat("pt-BR", {
+                      style: "currency",
+                      currency: "BRL",
+                    }).format(product.price)}
                   </span>
                 </div>
                 <a
@@ -132,12 +116,37 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, isOpen, onClose })
                   <span>Comprar agora</span>
                 </a>
               </div>
+
+              <div className="space-y-4 mb-6 flex-grow">
+                {product.description && (
+                  <div>
+                    <h4 className="text-sm font-bold text-stone-900 mb-1.5 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
+                      Sobre o Produto
+                    </h4>
+                    <p className="text-stone-500 text-sm leading-relaxed whitespace-pre-line">
+                      {product.description}
+                    </p>
+                  </div>
+                )}
+                {category?.description && (
+                  <div>
+                    <h4 className="text-sm font-bold text-stone-900 mb-1.5 flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-pink-400"></span>
+                      Linha {category.name}
+                    </h4>
+                    <p className="text-stone-500 text-sm leading-relaxed whitespace-pre-line">
+                      {category.description}
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
           </motion.div>
         </div>
       )}
     </AnimatePresence>
-  );
-};
+  )
+}
 
-export default ProductModal;
+export default ProductModal
